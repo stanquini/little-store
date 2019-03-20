@@ -12,7 +12,9 @@ import { RegisterProductService } from './services/register-product.service';
 export class RegisterComponent implements OnInit {
 
   newProduct: FormGroup;
-
+  message: boolean = false;
+  error: boolean = false;
+  errorMsg;
   constructor(private fb: FormBuilder, private serviceProduct: RegisterProductService) {}
 
   ngOnInit() {
@@ -24,11 +26,16 @@ export class RegisterComponent implements OnInit {
   }
 
   public registerProduct(item: Product) {
-    
-    console.log(this.newProduct);
+
     this.serviceProduct.addProduct(item)
       .subscribe((data: any) => {
-        console.log(data);
+        this.message = true;
+        setTimeout(()=>{this.message = false}, 2000)
+      },(e)=>{
+        console.error('ERRO', e);
+        this.errorMsg = e.message;
+        this.error = true;
+        setTimeout(()=>{this.error = false}, 2000)
       })
   }
 

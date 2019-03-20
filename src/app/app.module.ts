@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterProductService } from './register/services/register-product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
