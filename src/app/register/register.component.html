@@ -42,8 +42,10 @@
           </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary" (click)="registerProduct(newProduct.value)"
+          <button type="submit" class="btn btn-primary" *ngIf="!editMode" (click)="registerProduct(newProduct.value)"
             [disabled]="newProduct.invalid">Cadastrar</button>
+            <button type="submit" class="btn btn-primary" *ngIf="editMode" (click)="saveProduct(newProduct.value)"
+            [disabled]="newProduct.invalid">Salvar</button>
           <button class="btn btn-danger ml-2" (click)="resetForm()">Limpar</button>
         </div>
       </form>
