@@ -6,24 +6,24 @@
         <div class="form-group">
             <label for="nameProduct">Nome</label>
             <input type="text" formControlName="nameProduct" class="form-control" id="nameProduct" name="nameProduct" placeholder="Digite o nome do produto" required>
-            <div class="valid-feedback" [ngClass]="{'d-block': newProduct.controls.nameProduct.dirty && !newProduct.controls.nameProduct.invalid}">Looks good!</div>
-            <div class="invalid-feedback " [ngClass]="{'d-block': newProduct.controls.nameProduct.dirty && newProduct.controls.nameProduct.invalid}">Looks good!</div>
+            <div class="valid-feedback" [ngClass]="{'d-block': newProduct.controls.nameProduct.dirty && !newProduct.controls.nameProduct.invalid}">Valido!</div>
+            <div class="invalid-feedback " [ngClass]="{'d-block': newProduct.controls.nameProduct.dirty && newProduct.controls.nameProduct.invalid}">Invalido!</div>
           </div>
         <div class="form-group">
             <label for="quantity">Quantidade</label>
             <input type="number" formControlName="quantity" class="form-control" id="quantity" name="quantity" placeholder="Digite a quantidade" required>
-            <div class="valid-feedback" [ngClass]="{'d-block': newProduct.controls.quantity.dirty && !newProduct.controls.quantity.invalid}">Looks good!</div>
-            <div class="invalid-feedback" [ngClass]="{'d-block': newProduct.controls.quantity.dirty && newProduct.controls.quantity.invalid}">Please choose a username.</div>
+            <div class="valid-feedback" [ngClass]="{'d-block': newProduct.controls.quantity.dirty && !newProduct.controls.quantity.invalid}">Valido!</div>
+            <div class="invalid-feedback" [ngClass]="{'d-block': newProduct.controls.quantity.dirty && newProduct.controls.quantity.invalid}">Invalido!</div>
         </div>
         <div class="form-group">
             <label for="price">Preço</label>
             <input type="text" formControlName="price" class="form-control" id="price" name="price" placeholder="Digite o preço" required>
-            <div class="valid-feedback" [ngClass]="{'d-block': newProduct.controls.price.dirty && !newProduct.controls.price.invalid}">Looks good!</div>
-            <div class="invalid-feedback" [ngClass]="{'d-block': newProduct.controls.price.dirty && newProduct.controls.price.invalid}">Please choose a username.</div>
+            <div class="valid-feedback" [ngClass]="{'d-block': newProduct.controls.price.dirty && !newProduct.controls.price.invalid}">Valido!</div>
+            <div class="invalid-feedback" [ngClass]="{'d-block': newProduct.controls.price.dirty && newProduct.controls.price.invalid}">Invalido!</div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary" (click)="registerProduct()" [disabled]="newProduct.invalid" >Cadastrar</button>
-          <button class="btn btn-danger ml-2" (click)="resetForm(newProduct.controls)"  >Limpar</button>
+          <button type="submit" class="btn btn-primary" (click)="registerProduct(newProduct.value)" [disabled]="newProduct.invalid" >Cadastrar</button>
+          <button class="btn btn-danger ml-2" (click)="resetForm()"  >Limpar</button>
         </div>
       </form>
     </div>
