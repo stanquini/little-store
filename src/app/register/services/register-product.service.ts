@@ -14,24 +14,24 @@ export class RegisterProductService {
   constructor(private http: HttpClient) { }
 
   addProduct(item: Product): Observable<any> {
-    return this.http.post(environment.API + '/products', item);
+    return this.http.post(`${environment.API}/products`, item).pipe(take(1));
   }
 
   getProducts(): Observable<any> {
-    return this.http.get(environment.API + '/products');
+    return this.http.get(`${environment.API}/products`).pipe(take(1));
   }
 
   removeProduct(id) {
-    return this.http.delete(environment.API + '/products/'+id);
+    return this.http.delete(`${environment.API}/products/${id}`).pipe(take(1));
   }
 
   loadById(id) {
-    return this.http.get(environment.API + '/products/'+id).pipe(take(1));
+    return this.http.get(`${environment.API}/products/${id}`).pipe(take(1));
   }
- 
-  updateProduct(item: Product, id):Observable<any> {
+
+  updateProduct(item: Product, id): Observable<any> {
     console.log(item);
-    return this.http.put(environment.API + '/products/'+id, item)
+    return this.http.put(`${environment.API}/products/${id}`, item).pipe(take(1));
   }
 
 }

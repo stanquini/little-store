@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Product } from './product.interface'
 import { RegisterProductService } from './services/register-product.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { isNgTemplate } from '@angular/compiler';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -23,9 +22,7 @@ export class RegisterComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private fb: FormBuilder,
     private serviceProduct: RegisterProductService,
-
-
-  ) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.newProduct = this.fb.group({
@@ -50,7 +47,6 @@ export class RegisterComponent implements OnInit {
   }
 
   updateForm(item) {
-    console.warn(item);
     this.id = item.id;
     this.newProduct.patchValue({
       id: item.id,
@@ -65,7 +61,8 @@ export class RegisterComponent implements OnInit {
     this.serviceProduct.addProduct(item)
       .subscribe((data: any) => {
         this.message = true;
-        setTimeout(() => { this.message = false }, 2000)
+        this.resetForm();
+        setTimeout(() => { this.message = false }, 2000);
       }, (e) => {
         console.error('ERRO', e);
         this.errorMsg = e.message;
@@ -75,12 +72,12 @@ export class RegisterComponent implements OnInit {
   }
 
   saveProduct(item: Product) {
-    console.log(item);
-    this.serviceProduct.updateProduct(item, this.id)
-      .subscribe((data: any)=>{
-        console.log(data);
-      })
 
+    this.serviceProduct.updateProduct(item, this.id)
+      .subscribe((data: any) => {
+        this.resetForm();
+        this.router.navigate(['lista']);
+      })
   }
 
   public resetForm() {
